@@ -13,19 +13,19 @@ var server = http.createServer(function(req, res) {
 
 	// 檢查目標檔案
 	fs.exists(filepath, function(exists) {
-	if (!exists) {
-		res.writeHead(404, {'Content-Type': 'text/plain'});
-		res.end('Not Found\n');
-		return;
-	}
+		if (!exists) {
+			res.writeHead(404, {'Content-Type': 'text/plain'});
+			res.end('Not Found\n');
+			return;
+		}
 
-	// 讀取檔案內容
-	fs.readFile(filepath, function(err, content) {
-		// 回傳檔案內容給網頁瀏覽器
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end(content);
+		// 讀取檔案內容
+		fs.readFile(filepath, function(err, content) {
+			// 回傳檔案內容給網頁瀏覽器
+			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.end(content);
+		});
 	});
-});
 });
 
 server.listen(process.env.PORT, function() {
