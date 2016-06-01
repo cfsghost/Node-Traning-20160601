@@ -1,0 +1,14 @@
+{
+  "name": "myproject",
+  "version": "0.0.1",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fred Chien <cfsghost@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^1.2.0"
+  }
+}
