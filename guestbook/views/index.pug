@@ -1,0 +1,17 @@
+html
+	head
+		title Guestbook
+		link(rel="stylesheet", type="text/css", href="/styles/default.css")
+	body
+		h1 MY KOA GUESTBOOK
+		img.logo(src='/images/logo.png')
+
+		a(href='/leavemsg') Leave Massage
+
+		- for (var index in messages)
+			div
+				div Name: #{messages[index].name}
+				div #{messages[index].msg}
+
+			hr
+

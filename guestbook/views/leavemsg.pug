@@ -1,0 +1,14 @@
+html
+	head
+		title Leave your message
+	body
+		h1 Leave Message
+
+		form(action='/leavemsg', method='POST')
+			div NAME:
+			input(type='text', name='name')
+
+			div MESSAGE:
+			textarea(name='msg')
+
+			input(type='submit')
