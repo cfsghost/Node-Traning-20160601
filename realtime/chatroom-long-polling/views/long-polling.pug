@@ -1,0 +1,39 @@
+html
+	head
+		title Long-polling
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script.
+			$(function() {
+				function poll() {
+					 $.ajax({
+						 url: '/poll',
+						 type: 'get',
+						 timeout: 120000,
+						 complete: poll,
+						 success: function(data) {
+							console.log(data);
+							var line = $('<div>').html(data.name + ': ' + data.message);
+							$('#message').append(line);
+						 }
+					 });
+				}
+				poll();
+
+				$('#send').on('click', function() {
+					$.post('/send', {
+						name: $('#name').val(),
+						message: $('#msg').val()
+					}, function() {
+						console.log('sent');
+					});
+				});
+			});
+	body
+		h1 ChatRoom - Long-polling
+		div NAME:
+			input#name(type='text')
+		div Say: 
+			input#msg(type='text')
+			input#send(type='button', value='Send')
+
+		div#message
