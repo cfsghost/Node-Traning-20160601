@@ -16,7 +16,7 @@ app.use(views(__dirname + '/views', {
 }));
 
 var wsRouter = new Router();
-wsRouter.get('/', function *() {
+wsRouter.get('/abc', function *() {
 	console.log('Connected');
 	this.websocket.send('Welcome');
 	this.websocket.on('message', function(msg) {
