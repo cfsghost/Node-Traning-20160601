@@ -1,0 +1,39 @@
+html
+	head
+		title Long-polling
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script.
+			$(function() {
+				var wsUrl = 'wss://node-js-traning-cfsghost.c9users.io/';
+				var websocket = new WebSocket(wsUrl);
+				websocket.onopen = function(evt) {
+					console.log('Connected');
+				};
+				websocket.onclose = function(evt) {
+					console.log('DisConnected');
+				};
+				websocket.onmessage = function(evt) {
+					console.log('Got Message');
+					var line = $('<div>').html(evt.data);
+					$('#message').append(line);
+				};
+				websocket.onerror = function(evt) {
+					console.log('Something\'s wrong');
+				};
+
+				$('#send').on('click', function() {
+					websocket.send(JSON.stringify({
+						name: $('#name').val(),
+						message: $('#msg').val()
+					}));
+				});
+			});
+	body
+		h1 ChatRoom - Long-polling
+		div NAME:
+			input#name(type='text')
+		div Say: 
+			input#msg(type='text')
+			input#send(type='button', value='Send')
+
+		div#message
