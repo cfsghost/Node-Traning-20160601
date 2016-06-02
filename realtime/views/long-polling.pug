@@ -1,0 +1,21 @@
+html
+	head
+		title Long-polling
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+		script.
+			function poll() {
+			 $.ajax({
+			 url: '/poll',
+			 type: 'get',
+			 timeout: 120000,
+			 complete: poll,
+			 success: function(data) {
+			 	console.log(data);
+				$('#message').html(data);
+			 }
+			 });
+			}
+			poll();
+	body
+		h1 Long-polling
+		div#message
